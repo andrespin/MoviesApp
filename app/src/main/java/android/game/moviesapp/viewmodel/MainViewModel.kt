@@ -35,12 +35,14 @@ class MainViewModel(
         }.start()
     }
 
-    private fun getUpcomingDataFromLocalSource(){
+    private fun getUpcomingDataFromLocalSource() {
         upcomingLiveDataToObserve.value = AppLoadingStateUpcomingMovies.Loading
-        Thread{
+        Thread {
             Thread.sleep(1000)
-            upcomingLiveDataToObserve.postValue(AppLoadingStateUpcomingMovies.Success(
-                repositoryUpcomingImpl.getUpcomingMoviesCardDBFromLocalStorage())
+            upcomingLiveDataToObserve.postValue(
+                AppLoadingStateUpcomingMovies.Success(
+                    repositoryUpcomingImpl.getUpcomingMoviesCardDBFromLocalStorage()
+                )
             )
         }.start()
     }

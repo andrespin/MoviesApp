@@ -41,12 +41,14 @@ class UpcomingMoviesAdapter(
 
     inner class UpcomingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun onBind(upcomingMovieCard: UpcomingMovieCard) {
-            itemView.findViewById<TextView>(R.id.textUpcomingMovieName).text =
-                upcomingMovieCard.date
-            itemView.findViewById<TextView>(R.id.textUpcomingDate).text =
-                upcomingMovieCard.date
-            itemView.setOnClickListener{
-                onItemViewClickListener?.onItemViewClick(upcomingMovieCard)
+            itemView.apply {
+                findViewById<TextView>(R.id.textUpcomingMovieName).text =
+                    upcomingMovieCard.date
+                findViewById<TextView>(R.id.textUpcomingDate).text =
+                    upcomingMovieCard.date
+                setOnClickListener{
+                    onItemViewClickListener?.onItemViewClick(upcomingMovieCard)
+                }
             }
         }
     }

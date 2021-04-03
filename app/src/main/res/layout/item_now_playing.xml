@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="90dp"
+    android:layout_height="175dp"
     android:layout_marginLeft="4dp"
     android:layout_marginTop="4dp"
     android:layout_marginRight="4dp"
@@ -42,6 +42,7 @@
             android:text="Название фильма"
             android:textSize="10sp"
             android:typeface="monospace"
+            android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageMovie" />
@@ -62,7 +63,7 @@
             android:id="@+id/imageStar"
             android:layout_width="14dp"
             android:layout_height="14dp"
-            android:layout_marginStart="28dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
             android:background="@android:drawable/btn_star_big_on"

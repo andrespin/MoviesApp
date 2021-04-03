@@ -22,9 +22,11 @@ class NowPlayingMoviesFragment : Fragment() {
 
     private var _binding: FragmentNowPlayingMoviesBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: MainViewModel
-    private var isDataSetRus: Boolean = true
+    private val viewModel by lazy {
+                ViewModelProvider(this).get(MainViewModel::class.java)
+    }
 
+    private var isDataSetRus: Boolean = true
 
     private var nowPlayingMovieCardDB: NowPlayingMovieCardDB? = null
 
@@ -56,7 +58,6 @@ class NowPlayingMoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.recyclerNowPlaying.adapter = adapter
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.getLiveData().observe(viewLifecycleOwner, Observer { putData(it) })
         viewModel.getNowPlayingMovieCardDBFromLocalSource()
     }

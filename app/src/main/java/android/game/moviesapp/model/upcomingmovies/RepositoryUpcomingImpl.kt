@@ -1,14 +1,10 @@
 package android.game.moviesapp.model.upcomingmovies
 
 
-class RepositoryUpcomingImpl: RepositoryUpcoming {
+class RepositoryUpcomingImpl : RepositoryUpcoming {
 
-    override fun getUpcomingMoviesCardDBFromServer(): UpcomingMovieCardDb {
-        return UpcomingMovieCardDb()
-    }
+    override fun getUpcomingMoviesCardDBFromServer() = UpcomingMovieCardDb()
 
-    override fun getUpcomingMoviesCardDBFromLocalStorage(): UpcomingMovieCardDb {
-        return UpcomingMovieCardDb()
-    }
+    override fun getUpcomingMoviesCardDBFromLocalStorage() = UpcomingMovieCardDb()
 
 }

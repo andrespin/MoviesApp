@@ -48,14 +48,16 @@ class NowPlayingMoviesAdapter(
 
     inner class NowPlayingMoviesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun onBind(nowPlayingMovieCard: NowPlayingMovieCard) {
-            itemView.findViewById<TextView>(R.id.textYear).text =
-                nowPlayingMovieCard.textYear
-            itemView.findViewById<TextView>(R.id.textMovieName).text =
-                nowPlayingMovieCard.textMovieName
-            itemView.findViewById<TextView>(R.id.textMoviewMark).text =
-                nowPlayingMovieCard.textMovieMark
-            itemView.setOnClickListener {
-                onItemViewClickListener?.onItemViewClick(nowPlayingMovieCard)
+            itemView.apply {
+                findViewById<TextView>(R.id.textYear).text =
+                    nowPlayingMovieCard.textYear
+                findViewById<TextView>(R.id.textMovieName).text =
+                    nowPlayingMovieCard.textMovieName
+                findViewById<TextView>(R.id.textMoviewMark).text =
+                    nowPlayingMovieCard.textMovieMark
+                setOnClickListener {
+                    onItemViewClickListener?.onItemViewClick(nowPlayingMovieCard)
+                }
             }
         }
     }

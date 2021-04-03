@@ -21,7 +21,9 @@ class UpcomingFragment() : Fragment() {
 
     private var _binding: FragmentUpcomingBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: MainViewModel
+    private val viewModel by lazy {
+        ViewModelProvider(this).get(MainViewModel::class.java)
+    }
     private var upcomingMovieCardDb: UpcomingMovieCardDb? = null
 
     private val adapter = UpcomingMoviesAdapter(object : OnItemViewClickListener {
@@ -49,7 +51,6 @@ class UpcomingFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.recyclerUpcoming.adapter = adapter
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.getUpcomingLiveData().observe(viewLifecycleOwner, Observer { putData(it) })
         viewModel.getUpcomingMovieCardDBFromLocalSource()
     }

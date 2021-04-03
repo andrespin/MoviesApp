@@ -23,12 +23,6 @@ class MainActivity : AppCompatActivity() {
             .commitNow()
     }
 
-    fun putDetailsFragment() {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.container, DetailsFragment.newInstance())
-            .commitNow()
-    }
-
     fun putDetailsFragment(upcomingMovieCard: UpcomingMovieCard) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, DetailsFragment.newInstance(upcomingMovieCard))
