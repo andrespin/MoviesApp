@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 
 
 class MainFragment : Fragment(), NowPlayingMoviesAdapterCallback {
@@ -78,6 +79,13 @@ class MainFragment : Fragment(), NowPlayingMoviesAdapterCallback {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun View.createAndShow(
+        text: String, actionText: String, action: (View) -> Unit,
+        length: Int = Snackbar.LENGTH_INDEFINITE
+    ) {
+        Snackbar.make(this, text, length).setAction(actionText, action).show()
     }
 
 }
