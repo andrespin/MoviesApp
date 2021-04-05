@@ -20,6 +20,11 @@ import com.google.android.material.snackbar.Snackbar
 class MainFragment : Fragment(), NowPlayingMoviesAdapterCallback {
 
 
+    // https://api.themoviedb.org/3/movie/550?api_key=df29ce69d803b8fd9c32aee7fb421a48
+
+     //upcoming
+    // https://api.themoviedb.org/3/movie/now_playing?api_key=df29ce69d803b8fd9c32aee7fb421a48&language=en-US&page=1
+
     private var _binding: MainFragmentBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: MainViewModel
@@ -42,6 +47,8 @@ class MainFragment : Fragment(), NowPlayingMoviesAdapterCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
     }
 
 

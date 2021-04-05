@@ -43,10 +43,10 @@ class UpcomingMoviesAdapter(
         fun onBind(upcomingMovieCard: UpcomingMovieCard) {
             itemView.apply {
                 findViewById<TextView>(R.id.textUpcomingMovieName).text =
-                    upcomingMovieCard.date
+                    upcomingMovieCard.name
                 findViewById<TextView>(R.id.textUpcomingDate).text =
                     upcomingMovieCard.date
-                setOnClickListener{
+                setOnClickListener {
                     onItemViewClickListener?.onItemViewClick(upcomingMovieCard)
                 }
             }

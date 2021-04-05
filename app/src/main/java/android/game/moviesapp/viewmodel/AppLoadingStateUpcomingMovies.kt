@@ -1,5 +1,6 @@
 package android.game.moviesapp.viewmodel
 
+import android.game.moviesapp.model.upcomingmovies.UpcomingMovieCard
 import android.game.moviesapp.model.upcomingmovies.UpcomingMovieCardDb
 
 sealed class AppLoadingStateUpcomingMovies {
