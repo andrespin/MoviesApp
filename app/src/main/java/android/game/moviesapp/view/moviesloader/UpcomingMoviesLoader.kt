@@ -1,6 +1,6 @@
 package android.game.moviesapp.view.moviesloader
 
-import android.game.moviesapp.model.UpcomingMovieDTO
+import android.game.moviesapp.model.upcomingmovies.UpcomingMovieDTO
 import android.game.moviesapp.model.upcomingmovies.UpcomingMovieCard
 import android.os.Build
 import android.os.Handler
@@ -8,7 +8,6 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
-import printMovies
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.URL
@@ -21,7 +20,13 @@ import javax.net.ssl.HttpsURLConnection
 // df29ce69d803b8fd9c32aee7fb421a48
 
 @RequiresApi(Build.VERSION_CODES.N)
-class UpcomingMoviesLoader(val listener: UpcomingMoviesLoaderListener) {
+class UpcomingMoviesLoader() {
+
+    lateinit var listener: UpcomingMoviesLoaderListener
+
+    constructor(listener: UpcomingMoviesLoaderListener) : this(){
+        this.listener = listener
+    }
 
     private val key = "df29ce69d803b8fd9c32aee7fb421a48"
 
@@ -39,11 +44,12 @@ class UpcomingMoviesLoader(val listener: UpcomingMoviesLoaderListener) {
                 try {
                     urlConnection = uri.openConnection() as HttpsURLConnection
                     urlConnection.requestMethod = "GET"
-                    urlConnection.readTimeout = 10000
+                    urlConnection.readTimeout = 20000
                     val bufferedReader =
                         BufferedReader(InputStreamReader(urlConnection.inputStream))
-                    Log.d("loadMovies() status", "works")
+                    Log.d("loadMovies() status", "upcoming works")
                     val s = getLines(bufferedReader)
+                    print(s)
                     handler.post { listener.onLoaded(convertFromDTOTOCard(parseJsonString(s))) }
                 } catch (e: Exception) {
                     Log.e("", "Fail connection", e)
@@ -56,7 +62,7 @@ class UpcomingMoviesLoader(val listener: UpcomingMoviesLoaderListener) {
         } catch (e: Exception) {
             e.printStackTrace()
         } finally {
-            Log.d("loadMovies() status", "Fail connection2")
+            Log.d("loadMovies() status", "Fail connection2 upcoming")
         }
 
     }
@@ -77,7 +83,7 @@ class UpcomingMoviesLoader(val listener: UpcomingMoviesLoaderListener) {
     }
 
     private fun parseJsonString(jsonStr: String): MutableList<UpcomingMovieDTO> {
-        val list = ParseString().getUpcomingMoviesList(jsonStr)
+        val list = ParseString().getMovieList(jsonStr)
         val listUpcomingMovieDTO: MutableList<UpcomingMovieDTO> = ArrayList()
 
         for (i in 0 until list.size) {

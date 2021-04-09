@@ -4,6 +4,7 @@ import android.game.moviesapp.databinding.FragmentNowPlayingMoviesBinding
 import android.game.moviesapp.model.nowplayingmovies.NowPlayingMovieCard
 import android.game.moviesapp.model.nowplayingmovies.NowPlayingMovieCardDB
 import android.game.moviesapp.view.adapters.NowPlayingMoviesAdapter
+import android.game.moviesapp.view.moviesloader.NowPlayingMoviesLoader
 import android.game.moviesapp.viewmodel.AppLoadingStatePlayingNowMovies
 import android.game.moviesapp.viewmodel.MainViewModel
 import android.os.Bundle
@@ -36,6 +37,23 @@ class NowPlayingMoviesFragment : Fragment() {
         }
     })
 
+//    private val onLoadListener: NowPlayingMoviesLoader.NowPlayingMoviesLoaderListener =
+//        object :
+
+        /*
+            private val onLoadListener: UpcomingMoviesLoader.UpcomingMoviesLoaderListener =
+        object : UpcomingMoviesLoader.UpcomingMoviesLoaderListener {
+            override fun onLoaded(listUpcomingMovieCard: MutableList<UpcomingMovieCard>) {
+                listOfUpcomingMovieCard = listUpcomingMovieCard
+            }
+
+            override fun onFailed(throwable: Throwable) {
+                TODO("Not yet implemented")
+            }
+        }
+
+         */
+
     interface OnItemViewClickListener {
         fun onItemViewClick(nowPlayingMovieCard: NowPlayingMovieCard)
     }
@@ -65,7 +83,7 @@ class NowPlayingMoviesFragment : Fragment() {
     private fun putData(appLoadingStatePlayingNowMovies: AppLoadingStatePlayingNowMovies) {
         when (appLoadingStatePlayingNowMovies) {
             is AppLoadingStatePlayingNowMovies.Success -> {
-                adapter.setData(appLoadingStatePlayingNowMovies.nowPlayingMovieCardDB.list)
+            //    adapter.setData(appLoadingStatePlayingNowMovies.nowPlayingMovieCardDB.list)
                 Log.d("Status", "Success")
             }
             is AppLoadingStatePlayingNowMovies.Loading -> {

@@ -1,5 +1,7 @@
 package android.game.moviesapp.view
 
+import android.content.Intent
+import android.content.IntentFilter
 import android.game.moviesapp.R
 import android.game.moviesapp.model.nowplayingmovies.NowPlayingMovieCard
 import android.game.moviesapp.model.upcomingmovies.UpcomingMovieCard
@@ -9,12 +11,20 @@ import android.os.Bundle
 
 class MainActivity : AppCompatActivity() {
 
+    private val receiver = MainBroadcastReceiver()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
             putMainFragment()
         }
+        registerReceiver(receiver, IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED))
+    }
+
+    override fun onDestroy() {
+        unregisterReceiver(receiver)
+        super.onDestroy()
     }
 
     fun putMainFragment() {

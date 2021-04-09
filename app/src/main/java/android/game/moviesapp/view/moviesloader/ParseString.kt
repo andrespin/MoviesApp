@@ -2,7 +2,7 @@ package android.game.moviesapp.view.moviesloader
 
 class ParseString {
 
-    fun getUpcomingMoviesList(jsonString: String?): MutableList<String> {
+    fun getMovieList(jsonString: String?): MutableList<String> {
         var startToRecord = false
         var strList: MutableList<String> = ArrayList()
         val c: CharArray = jsonString?.toCharArray() ?: charArrayOf()

@@ -6,12 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.game.moviesapp.databinding.FragmentUpcomingBinding
-import android.game.moviesapp.model.UpcomingMovieDTO
 import android.game.moviesapp.model.upcomingmovies.UpcomingMovieCard
 import android.game.moviesapp.model.upcomingmovies.UpcomingMovieCardDb
 import android.game.moviesapp.view.adapters.UpcomingMoviesAdapter
 import android.game.moviesapp.view.moviesloader.UpcomingMoviesLoader
-import android.game.moviesapp.viewmodel.AppLoadingStateUpcomingMovies
 import android.game.moviesapp.viewmodel.MainViewModel
 import android.util.Log
 import androidx.lifecycle.Observer
