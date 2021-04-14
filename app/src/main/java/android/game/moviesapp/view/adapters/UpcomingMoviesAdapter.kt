@@ -6,17 +6,19 @@ import android.game.moviesapp.view.UpcomingFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 
 class UpcomingMoviesAdapter(
     private var onItemViewClickListener: UpcomingFragment.OnItemViewClickListener?
 ) : RecyclerView.Adapter<UpcomingMoviesAdapter.UpcomingViewHolder>() {
 
-    private var UpcomingMovieCardList = listOf<UpcomingMovieCard>()
+    private var upcomingMovieCardList = listOf<UpcomingMovieCard>()
 
     fun setData(data: List<UpcomingMovieCard>) {
-        UpcomingMovieCardList = data
+        upcomingMovieCardList = data
         notifyDataSetChanged()
     }
 
@@ -32,11 +34,11 @@ class UpcomingMoviesAdapter(
     }
 
     override fun onBindViewHolder(holder: UpcomingViewHolder, position: Int) {
-        holder.onBind(UpcomingMovieCardList.get(position))
+        holder.onBind(upcomingMovieCardList.get(position))
     }
 
     override fun getItemCount(): Int {
-        return UpcomingMovieCardList.size
+        return upcomingMovieCardList.size
     }
 
     inner class UpcomingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -49,6 +51,10 @@ class UpcomingMoviesAdapter(
                 setOnClickListener {
                     onItemViewClickListener?.onItemViewClick(upcomingMovieCard)
                 }
+                Picasso
+                    .get()
+                    .load("https://image.tmdb.org/t/p/original${upcomingMovieCard.poster_path}")
+                    .into(findViewById<ImageView>(R.id.imageMovie))
             }
         }
     }

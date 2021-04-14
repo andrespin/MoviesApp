@@ -4,9 +4,8 @@ import android.game.moviesapp.databinding.FragmentNowPlayingMoviesBinding
 import android.game.moviesapp.model.nowplayingmovies.NowPlayingMovieCard
 import android.game.moviesapp.model.nowplayingmovies.NowPlayingMovieCardDB
 import android.game.moviesapp.view.adapters.NowPlayingMoviesAdapter
-import android.game.moviesapp.view.moviesloader.NowPlayingMoviesLoader
 import android.game.moviesapp.viewmodel.AppLoadingStatePlayingNowMovies
-import android.game.moviesapp.viewmodel.MainViewModel
+import android.game.moviesapp.viewmodel.DetailsViewModel
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,7 +15,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 
-
 class NowPlayingMoviesFragment : Fragment() {
 
     private val movieCardList = "MovieCardList"
@@ -24,7 +22,7 @@ class NowPlayingMoviesFragment : Fragment() {
     private var _binding: FragmentNowPlayingMoviesBinding? = null
     private val binding get() = _binding!!
     private val viewModel by lazy {
-                ViewModelProvider(this).get(MainViewModel::class.java)
+        ViewModelProvider(this).get(DetailsViewModel::class.java)
     }
 
     private var isDataSetRus: Boolean = true
@@ -36,23 +34,6 @@ class NowPlayingMoviesFragment : Fragment() {
             (activity as MainActivity?)!!.putDetailsFragment(nowPlayingMovieCard)
         }
     })
-
-//    private val onLoadListener: NowPlayingMoviesLoader.NowPlayingMoviesLoaderListener =
-//        object :
-
-        /*
-            private val onLoadListener: UpcomingMoviesLoader.UpcomingMoviesLoaderListener =
-        object : UpcomingMoviesLoader.UpcomingMoviesLoaderListener {
-            override fun onLoaded(listUpcomingMovieCard: MutableList<UpcomingMovieCard>) {
-                listOfUpcomingMovieCard = listUpcomingMovieCard
-            }
-
-            override fun onFailed(throwable: Throwable) {
-                TODO("Not yet implemented")
-            }
-        }
-
-         */
 
     interface OnItemViewClickListener {
         fun onItemViewClick(nowPlayingMovieCard: NowPlayingMovieCard)
@@ -76,14 +57,14 @@ class NowPlayingMoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.recyclerNowPlaying.adapter = adapter
-        viewModel.getLiveData().observe(viewLifecycleOwner, Observer { putData(it) })
-        viewModel.getNowPlayingMovieCardDBFromLocalSource()
+        viewModel.getNowPlayingLiveData().observe(viewLifecycleOwner, Observer { putData(it) })
+        viewModel.getNowPlayingMoviesFromRemoteSource(api_key, language, page)
     }
 
     private fun putData(appLoadingStatePlayingNowMovies: AppLoadingStatePlayingNowMovies) {
         when (appLoadingStatePlayingNowMovies) {
-            is AppLoadingStatePlayingNowMovies.Success -> {
-            //    adapter.setData(appLoadingStatePlayingNowMovies.nowPlayingMovieCardDB.list)
+            is AppLoadingStatePlayingNowMovies.ServerSuccess -> {
+                adapter.setData(appLoadingStatePlayingNowMovies.nowPlayingMovieCardFromServerData.list)
                 Log.d("Status", "Success")
             }
             is AppLoadingStatePlayingNowMovies.Loading -> {
@@ -95,12 +76,10 @@ class NowPlayingMoviesFragment : Fragment() {
         }
     }
 
-
     override fun onDestroy() {
         adapter.removeListener()
         super.onDestroy()
     }
-
 
     companion object {
         @JvmStatic
@@ -111,5 +90,4 @@ class NowPlayingMoviesFragment : Fragment() {
                 }
             }
     }
-
 }

@@ -27,7 +27,6 @@ class MainFragment : Fragment(), NowPlayingMoviesAdapterCallback {
 
     private var _binding: MainFragmentBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: MainViewModel
     private val nowPlayingMovieCardDB: NowPlayingMovieCardDB = NowPlayingMovieCardDB()
     private val upcomingMovieCardDb: UpcomingMovieCardDb = UpcomingMovieCardDb()
 
@@ -47,15 +46,10 @@ class MainFragment : Fragment(), NowPlayingMoviesAdapterCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
     }
-
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.getLiveData().observe(viewLifecycleOwner, Observer { })
     }
 
     private fun putNowPlayingMoviesFragment() {

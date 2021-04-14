@@ -54,7 +54,7 @@ class NowPlayingMoviesAdapter(
                 findViewById<TextView>(R.id.textMovieName).text =
                     nowPlayingMovieCard.textMovieName
                 findViewById<TextView>(R.id.textMoviewMark).text =
-                    nowPlayingMovieCard.textMovieMark
+                    nowPlayingMovieCard.textMovieMark?.toString() ?: ""
                 setOnClickListener {
                     onItemViewClickListener?.onItemViewClick(nowPlayingMovieCard)
                 }
