@@ -4,7 +4,7 @@ import android.game.moviesapp.databinding.FragmentNowPlayingMoviesBinding
 import android.game.moviesapp.model.nowplayingmovies.NowPlayingMovieCard
 import android.game.moviesapp.model.nowplayingmovies.NowPlayingMovieCardDB
 import android.game.moviesapp.view.adapters.NowPlayingMoviesAdapter
-import android.game.moviesapp.viewmodel.AppLoadingStatePlayingNowMovies
+import android.game.moviesapp.app.AppLoadingStatePlayingNowMovies
 import android.game.moviesapp.viewmodel.DetailsViewModel
 import android.os.Bundle
 import android.util.Log

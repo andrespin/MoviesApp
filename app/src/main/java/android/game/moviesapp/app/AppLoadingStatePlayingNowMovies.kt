@@ -1,4 +1,4 @@
-package android.game.moviesapp.viewmodel
+package android.game.moviesapp.app
 
 import android.game.moviesapp.model.nowplayingmovies.NowPlayingMovieCardDB
 import android.game.moviesapp.model.nowplayingmovies.NowPlayingMovieCardFromServerData

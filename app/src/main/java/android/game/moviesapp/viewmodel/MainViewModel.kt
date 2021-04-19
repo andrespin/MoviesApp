@@ -1,5 +1,7 @@
 package android.game.moviesapp.viewmodel
 
+import android.game.moviesapp.app.AppLoadingStatePlayingNowMovies
+import android.game.moviesapp.app.AppLoadingStateUpcomingMovies
 import android.game.moviesapp.model.nowplayingmovies.Repository
 import android.game.moviesapp.model.nowplayingmovies.RepositoryImpl
 import android.game.moviesapp.model.upcomingmovies.RepositoryUpcoming

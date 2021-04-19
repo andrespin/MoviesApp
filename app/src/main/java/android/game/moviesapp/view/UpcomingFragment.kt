@@ -9,7 +9,7 @@ import android.game.moviesapp.databinding.FragmentUpcomingBinding
 import android.game.moviesapp.model.upcomingmovies.UpcomingMovieCard
 import android.game.moviesapp.model.upcomingmovies.UpcomingMovieCardDb
 import android.game.moviesapp.view.adapters.UpcomingMoviesAdapter
-import android.game.moviesapp.viewmodel.AppLoadingStateUpcomingMovies
+import android.game.moviesapp.app.AppLoadingStateUpcomingMovies
 import android.game.moviesapp.viewmodel.DetailsViewModel
 import android.util.Log
 import androidx.lifecycle.Observer
@@ -60,12 +60,11 @@ class UpcomingFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.getUpcomingMoviesFromDb()
         binding.recyclerUpcoming.adapter = adapter
-        viewModel.getLiveData().observe(viewLifecycleOwner, Observer { putData(it) })
+        viewModel.getLiveData().observe(viewLifecycleOwner, Observer { putData(it)})
         viewModel.getUpcomingMoviesFromRemoteSource(api_key, language, page)
-
     }
-
 
     private fun putData(appLoadingStateUpcomingMovies: AppLoadingStateUpcomingMovies) {
         when (appLoadingStateUpcomingMovies) {
@@ -75,13 +74,17 @@ class UpcomingFragment() : Fragment() {
                     appLoadingStateUpcomingMovies.upcomingMovieCardFromServerData.list.size.toString()
                 )
                 adapter.setData(appLoadingStateUpcomingMovies.upcomingMovieCardFromServerData.list)
+                viewModel.saveUpcomingMoviesToDb(appLoadingStateUpcomingMovies.upcomingMovieCardFromServerData.list)
+                // save list
                 Log.d("Status", "Upcoming success")
             }
             is AppLoadingStateUpcomingMovies.Loading -> {
                 Log.d("Status", "Upcoming loading")
+                adapter.setData(viewModel.returnUpcomingMoviesFromDb())
             }
             is AppLoadingStateUpcomingMovies.Error -> {
                 Log.d("Status", "Upcoming error")
+                viewModel.getUpcomingMoviesFromDb()
             }
         }
     }

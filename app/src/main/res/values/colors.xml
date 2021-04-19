@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="loadingBackground">#80FFFFFF</color>
+    <color name="thumbDay">#00FFDB</color>
+    <color name="trackDay">#7C8885</color>
 </resources>
