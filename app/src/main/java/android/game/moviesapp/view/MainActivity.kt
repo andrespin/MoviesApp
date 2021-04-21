@@ -19,7 +19,9 @@ class MainActivity : AppCompatActivity() {
     private val isAdult = "my_boolean"
     private val adultMode = "AdultMode"
 
-    lateinit var sharedPreferences: SharedPreferences
+
+    fun getSharedPreferences() =
+        applicationContext.getSharedPreferences(adultMode, Context.MODE_PRIVATE)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +29,10 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             putMainFragment()
         }
-        sharedPreferences = getSharedPreferences(adultMode, Context.MODE_PRIVATE)
-        registerReceiver(receiver, IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED))
+
+//        var s = this.getPreferences(MODE_PRIVATE)
+//        println("s.getBoolean(\"isAdult\", false) = " + s.getBoolean("isAdult", false))
+//        registerReceiver(receiver, IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED))
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -45,8 +49,20 @@ class MainActivity : AppCompatActivity() {
                 putSettingsFragment()
                 return true
             }
+
+            R.id.contentProvider -> {
+                putContentProviderFragment()
+                return true
+            }
+
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun putContentProviderFragment() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container, ContentProviderFragment.newInstance())
+            .commitNow()
     }
 
     override fun onDestroy() {
@@ -54,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
-    fun putSettingsFragment(){
+    fun putSettingsFragment() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, SettingsFragment.newInstance())
             .commitNow()

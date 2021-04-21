@@ -1,11 +1,12 @@
 package android.game.moviesapp.view
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.game.moviesapp.R
+
 import android.game.moviesapp.databinding.FragmentSettingsBinding
 import android.game.moviesapp.databinding.FragmentUpcomingBinding
 
@@ -27,15 +28,14 @@ class SettingsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+       // getSettingsDao().insert()
+
     }
 
     private fun initBackButton(){
         binding.imageBack.setOnClickListener(){
             (activity as MainActivity?)!!.putMainFragment()
+            println("Works fine")
         }
     }
 
@@ -53,6 +53,16 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initBackButton()
     }
+
+
+    /*
+            fun newInstance(upcomingMovieCardDb: UpcomingMovieCardDb) =
+            UpcomingFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable(upcomingMovieCardList, upcomingMovieCardDb)
+                }
+            }
+     */
 
 
     companion object {

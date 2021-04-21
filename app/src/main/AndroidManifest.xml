@@ -3,6 +3,7 @@
     package="android.game.moviesapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:name="android.game.moviesapp.app.App"
@@ -30,7 +31,3 @@
     </application>
 
 </manifest>
-
-<!--
-        <activity android:name="android.game.moviesapp.app.App"></activity>
--->

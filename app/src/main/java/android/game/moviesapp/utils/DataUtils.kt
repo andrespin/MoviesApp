@@ -8,11 +8,15 @@ import android.game.moviesapp.model.nowplayingmovies.NowPlayingMovieDTO
 import android.game.moviesapp.model.upcomingmovies.UpcomingMovieCard
 import android.game.moviesapp.model.upcomingmovies.UpcomingMovieCardFromServerData
 import android.game.moviesapp.model.upcomingmovies.UpcomingMovieDTO
+import android.game.moviesapp.room.nowplaying.NowPlayingMoviesEntity
 import android.game.moviesapp.room.upcoming.UpcomingMoviesEntity
 import android.util.Log
 
 
-    fun checkResponse(serverResponse: UpcomingMovieDTO, errorDescription: String): AppLoadingStateUpcomingMovies {
+fun checkResponse(
+    serverResponse: UpcomingMovieDTO,
+    errorDescription: String
+): AppLoadingStateUpcomingMovies {
     return if (serverResponse == null || serverResponse.results == null ||
         serverResponse.page == null || serverResponse.total_pages == null
     ) {
@@ -24,7 +28,10 @@ import android.util.Log
     }
 }
 
-    fun checkResponse(serverResponse: NowPlayingMovieDTO, errorDescription: String): AppLoadingStatePlayingNowMovies {
+fun checkResponse(
+    serverResponse: NowPlayingMovieDTO,
+    errorDescription: String
+): AppLoadingStatePlayingNowMovies {
     return if (serverResponse == null || serverResponse.results == null ||
         serverResponse.page == null || serverResponse.total_pages == null
     ) {
@@ -88,12 +95,6 @@ private fun convertDtoToModel(serverResponse: UpcomingMovieDTO): UpcomingMovieCa
 }
 
 
-
-
-
-
-
-
 fun convertUpcomingMoviesEntityToDao(entityList: List<UpcomingMoviesEntity>): List<UpcomingMovieCard> {
     return entityList.map {
         UpcomingMovieCard(
@@ -113,6 +114,24 @@ fun convertUpcomingMoviesEntityToDao(entityList: List<UpcomingMoviesEntity>): Li
         )
     }
 }
+
+
+//fun convertDaoToNowPlayingMoviesEntity(list: List<NowPlayingMovieCard>): List<NowPlayingMoviesEntity>{
+//    return list.map{
+//        NowPlayingMoviesEntity(
+//            0,
+//            it.textMovieName ?: "no data",
+//            it.textYear ?: "no data",
+//            convertFromBooleanToDigit(),
+//            it.backdrop_path ?: "no data",
+//            it.id_movie
+//
+//
+//
+//        )
+//    }
+//}
+
 
 fun convertDaoToUpcomingMoviesEntity(list: List<UpcomingMovieCard>): List<UpcomingMoviesEntity> {
     return list.map {

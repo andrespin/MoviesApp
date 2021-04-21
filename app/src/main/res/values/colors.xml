@@ -10,4 +10,6 @@
     <color name="loadingBackground">#80FFFFFF</color>
     <color name="thumbDay">#00FFDB</color>
     <color name="trackDay">#7C8885</color>
+
+    <color name="fragmentBackground">#FFFFFF</color>
 </resources>

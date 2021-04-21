@@ -9,7 +9,7 @@ data class NowPlayingMovieCard(val textYear: String?,
                                val adult: Boolean?,
                                val backdrop_path: String?,
                                val genre_ids: List<Int>?,
-                               val id: Int?,
+                               val id_movie: Int?,
                                val original_language: String?,
                                val original_title: String?,
                                val popularity: Double?,
@@ -17,5 +17,22 @@ data class NowPlayingMovieCard(val textYear: String?,
                                val video: Boolean?,
                                val vote_count: Int?
                                ) : Serializable
+
+
+/*
+    val name: String,
+    val date: String,
+    val adult: Boolean,
+    val backdrop_path: String,
+    val id_movie: Int,
+    val original_language: String,
+    val original_title: String,
+    val overview: String,
+    val popularity: Double,
+    val poster_path: String,
+    val video: Boolean,
+    val vote_average: Double,
+    val vote_count: Int
+ */
 
 

@@ -6,4 +6,11 @@
             android:title="Settings"
             app:showAsAction="ifRoom|withText"
             />
+
+        <item
+            android:id="@+id/contentProvider"
+            android:title="Contacts"
+            app:showAsAction="ifRoom|withText"
+            />
+
 </menu>

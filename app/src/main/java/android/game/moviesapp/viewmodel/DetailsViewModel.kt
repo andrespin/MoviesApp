@@ -1,5 +1,6 @@
 package android.game.moviesapp.viewmodel
 
+import android.game.moviesapp.app.App
 import android.game.moviesapp.app.App.Companion.getUpcomingMoviesDao
 import android.game.moviesapp.app.AppLoadingStatePlayingNowMovies
 import android.game.moviesapp.app.AppLoadingStateUpcomingMovies
@@ -35,9 +36,9 @@ class DetailsViewModel(
     private val upcomingLocalRepositoryImpl: UpcomingLocalRepository = UpcomingLocalRepositoryImpl(
         getUpcomingMoviesDao()
     ),
-    private val settingsRepositoryImpl: SettingsRepository = SettingsRepositoryImpl(
-        MainActivity().sharedPreferences!!
-    ),
+//    private val settingsRepositoryImpl: SettingsRepository = SettingsRepositoryImpl(
+//        App().getSharedPreferences()
+//    ),
 
     private val nowPlayingLiveData: MutableLiveData<AppLoadingStatePlayingNowMovies> = MutableLiveData(),
     private val nowPlayingRepositoryImpl: NowPlayingRepository = NowPlayingRepositoryImpl(
