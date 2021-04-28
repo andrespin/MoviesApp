@@ -26,7 +26,7 @@ class DetailsFragment : Fragment() {
     private var upcomingMovieCard: UpcomingMovieCard? = null
     private var nowPlayingMovieCard: NowPlayingMovieCard? = null
 
-
+        // штрафы гибдд
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }

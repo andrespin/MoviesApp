@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'com.google.gms.google-services'
 
 }
 apply plugin: 'kotlin-android-extensions'
@@ -43,6 +44,7 @@ dependencies {
 
     //Room
     implementation 'androidx.room:room-runtime:2.2.6'
+    implementation 'com.google.firebase:firebase-messaging:21.0.1'
     kapt 'androidx.room:room-compiler:2.2.6'
 
     //Retrofit
