@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/fragmentBackground"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageBack"
+        android:layout_width="72dp"
+        android:layout_height="44dp"
+        android:src="?attr/actionModeCloseDrawable"
+        tools:layout_editor_absoluteX="180dp"
+        tools:layout_editor_absoluteY="160dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/containerForContacts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_15_dp" />
+
+    </ScrollView>
+
+</LinearLayout>
