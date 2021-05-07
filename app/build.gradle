@@ -25,6 +25,21 @@ android {
         viewBinding true
     }
 
+    flavorDimensions 'version'
+    productFlavors {
+
+        free {
+            dimension 'version'
+            versionNameSuffix '.free'
+        }
+
+        paid {
+            dimension 'version'
+            versionNameSuffix '.paid'
+        }
+
+    }
+
     buildTypes {
         release {
             minifyEnabled false
